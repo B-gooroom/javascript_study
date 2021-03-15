@@ -1,5 +1,25 @@
 <script>
   const array1 = [];
   const array2 = [1,2,3];
-  
+
+  array1.push(3);
+  array1.push(7);
+  array1.push('이');
+
+  const a1 = array1[0];
+  const a2 = array2[1];
+  const a3 = array1[2];
+
+  array1[0] = undefined;
+  array1[1] = true;
+  array1[2] = [3,4,5];
+
+  array1.splice(0, 1);
+  array1.splice(1, 1);
+  array1.splice(2, 1);
+
+  const length1 = array1.length;
+  const length2 = array2.length;
+  const lastIndex = array2.length - 1;
+  const lastValue = array2[lastIndex];
 </script>
