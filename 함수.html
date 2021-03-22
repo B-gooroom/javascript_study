@@ -7,4 +7,32 @@
   // const returned1 = func1('parameter1', 'parameter2');
   const returned1 = func1(1);
 
+  const scriptConst2 = 'a';
+  const func2 = function(argument1) {
+    const compare1 = scriptConst2 === argument1;
+    argument1 = 'b';
+    const compare2 = scriptConst2 === argument1;
+  }
+  func2(scriptConst2);
+
+  const scriptConst3 = [];
+  const func3 = function(argument1) {
+    const compare1 = scriptConst3 === argument1;
+    argument1.push('a');
+    const compare2 = scriptConst3 === argument1;
+  }
+  func3(scriptConst3);
+
+  const scriptConst4 = function() {};
+  const func4 = function(argument1) {
+    argument1();
+    const compare1 = scriptConst4 === argument1;
+    argument1 = function() {};
+    const compare2 = scriptConst4 === argument1;
+  }
+  // func4(scriptConst4);
+  func4(function() {
+    console.log('익명함수 실행');
+  });
+
 </script>
