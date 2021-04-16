@@ -26,8 +26,14 @@
     return members;
   };
   const membersRead = function() {
+    // for (let index in members) {
+    //   document.writeln(members[index]);
+    // }
+    const tagPre = document.getElementById('tag-pre');
     for (let index in members) {
-      document.writeln(members[index]);
+      let innerHTML = tagPre.innerHTML + members[index];
+      innerHTML += '\n';
+      tagPre.innerHTML = innerHTML;
     }
     return members;
   };
