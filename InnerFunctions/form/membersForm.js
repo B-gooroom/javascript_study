@@ -11,7 +11,7 @@
   const membersSubmit = function(form) {
     const nameTextObject = form['name-text'];
     try {
-      const evalReturn = JSON.parse(nameTextObject.value);
+      const evalReturn = eval(nameTextObject.value);
       console.log(evalReturn);
     } catch(error) {
       console.error(error);
@@ -31,9 +31,10 @@
     // }
     const tagPre = document.getElementById('tag-pre');
     for (let index in members) {
-      let innerHTML = tagPre.innerHTML + members[index];
-      innerHTML += '\n';
-      tagPre.innerHTML = innerHTML;
+      // let innerHTML = tagPre.innerHTML + members[index];
+      // innerHTML += '\n';
+      // tagPre.innerHTML = innerHTML;
+      tagPre.innerHTML += members[index] + '\n';
     }
     return members;
   };
