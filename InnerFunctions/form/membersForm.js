@@ -1,3 +1,16 @@
+const url = new URL(window.location);
+const queryString = url.searchParams;
+const nameText = queryString.get('name-text');
+const nameHiddens = queryString.getAll('name-hidden');
+const nameHidden = nameHiddens[0];
+
+const nameTextObjects = document.getElementsByName('name-text');
+const nameTextObject = nameTextObjects[0];
+nameTextObject.value = nameText;
+// focus = 검색엔진의 '깜빡이'기능
+nameTextObject.focus();
+nameTextObject.blur();
+
   // const members = [];
   const membersGet = sessionStorage.getItem('members');
   const membersLogical = membersGet || '[]';
