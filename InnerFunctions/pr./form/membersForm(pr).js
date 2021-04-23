@@ -1,4 +1,13 @@
-<script>
+const url = new URL(window.location);
+const queryString = url.searchParams;
+const nameText = queryString.get('name-text');
+const nameHiddens = queryString.getAll('name-hidden');
+const nameHidden = nameHiddens[0];
+
+// const nameTextObjects = document.getElementsByName('name-text');
+// const nameTextObject = nameTextObjects[0];
+nameTextObject = document.getElementsByName('name-text')[0];
+
   // const members = [];
   const membersGet = sessionStorage.getItem('members');
   const membersLogical = membersGet || '[]';
@@ -32,9 +41,10 @@
     // }
     const tagPre = document.getElementById('tag-pre');
     for (let index in members) {
-      let innerHTML = tagPre.innerHTML + members[index];
-      innerHTML += '\n';
-      tagPre.innerHTML = innerHTML;
+      // let innerHTML = tagPre.innerHTML + members[index];
+      // innerHTML += '\n';
+      // tagPre.innerHTML = innerHTML;
+      tagPre.innerHTML += members[index] + '\n';
     }
     return members;
   };
@@ -52,4 +62,3 @@
     return members;
   };
   membersRead();
-  </script>
