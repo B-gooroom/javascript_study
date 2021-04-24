@@ -1,15 +1,15 @@
-const url = new URL(window.location);
-const queryString = url.searchParams;
-const nameText = queryString.get('name-text');
-const nameHiddens = queryString.getAll('name-hidden');
-const nameHidden = nameHiddens[0];
+// const url = new URL(window.location);
+// const queryString = url.searchParams;
+// const nameText = queryString.get('name-text');
+// const nameHiddens = queryString.getAll('name-hidden');
+// const nameHidden = nameHiddens[0];
 
-const nameTextObjects = document.getElementsByName('name-text');
-const nameTextObject = nameTextObjects[0];
-nameTextObject.value = nameText;
+// const nameTextObjects = document.getElementsByName('name-text');
+// const nameTextObject = nameTextObjects[0];
+// nameTextObject.value = nameText;
 // focus = 검색엔진의 '깜빡이'기능
-nameTextObject.focus();
-nameTextObject.blur();
+// nameTextObject.focus();
+// nameTextObject.blur();
 
   // const members = [];
   const membersGet = sessionStorage.getItem('members');
@@ -39,10 +39,18 @@ nameTextObject.blur();
   //   return members;
   // };
   const membersCreate = function(form) {
-    const nameTextObject = form['name-text'];
-    members.push(nameTextObject.value);
+    // const nameTextObject = form['name-text'];
+    // members.push(nameTextObject.value);
+    // nameTextObject.value = '';
+    const memberNameObject = form['member-name'];
+    const memberAgeObject = form['member-age'];
+    members.push({
+      name: memberNameObject.value,
+      age: memberAgeObject.value
+    });
+    memberNameObject.value = '';
+    memberAgeObject.value = '';
     membersSet();
-    nameTextObject.value = '';
     return membersRead();
   };
 
