@@ -110,7 +110,11 @@
 
   const membersUpdate = function(index) {
     const name = document.getElementsByName('members-name')[index].value;
-    members[index] = name;
+    const age = document.getElementsByName('members-age')[index].value;
+    members[index] = {
+      name: name,
+      age: age
+    };
     membersSet();
     return membersRead();
   };
