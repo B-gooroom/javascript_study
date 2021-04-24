@@ -46,27 +46,39 @@ nameTextObject.blur();
     return membersRead();
   };
 
+  // const membersRead = function() {
+  //   // for (let index in members) {
+  //   //   document.writeln(members[index]);
+  //   // }
+  //   const tagPre = document.getElementById('tag-pre');
+  //   // for (let index in members) {
+  //   //   // let innerHTML = tagPre.innerHTML + members[index];
+  //   //   // innerHTML += '\n';
+  //   //   // tagPre.innerHTML = innerHTML;
+  //   //   tagPre.innerHTML += members[index] + '\n';
+  //   // }
+  //   tagPre.innerHTML = '';
+  //   for (let index in members) {
+  //     tagPre.innerHTML += '<input type="text" name="members-name" value="' + members[index] + '">';
+  //     tagPre.innerHTML += '<button onclick="membersUpdate(' + index + ')">Update</button>';
+  //     tagPre.innerHTML += '<button onclick="membersDelete(' + index + ')">Delete</button>';
+  //     tagPre.innerHTML += '\n';
+  //   }
+  //   console.log('Readed', members);
+  //   return members;
+  // };
   const membersRead = function() {
-    // for (let index in members) {
-    //   document.writeln(members[index]);
-    // }
-    const tagPre = document.getElementById('tag-pre');
-    // for (let index in members) {
-    //   // let innerHTML = tagPre.innerHTML + members[index];
-    //   // innerHTML += '\n';
-    //   // tagPre.innerHTML = innerHTML;
-    //   tagPre.innerHTML += members[index] + '\n';
-    // }
-    tagPre.innerHTML = '';
+    const tagDivParent = document.getElementById('tag-div-parent');
+    const tagDivChild = document.getElementById('tag-div-child');
+    tagDivParent.innerHTML = '';
     for (let index in members) {
-      tagPre.innerHTML += '<input type="text" name="members-name" value="' + members[index] + '">';
-      tagPre.innerHTML += '<button onclick="membersUpdate(' + index + ')">Update</button>';
-      tagPre.innerHTML += '<button onclick="membersDelete(' + index + ')">Delete</button>';
-      tagPre.innerHTML += '\n';
+      const newDivChild = tagDivChild.cloneNode(true);
+      tagDivParent.appendChild(newDivChild);
     }
     console.log('Readed', members);
     return members;
   };
+
   const membersDelete = function(index) {
     members.splice(index, 1);
     membersSet()
