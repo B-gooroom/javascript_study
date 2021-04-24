@@ -20,24 +20,32 @@ nameTextObject.blur();
     const membersSet = JSON.stringify(members);
     sessionStorage.setItem('members', membersSet);
   }
+// form태그를 그대로 가져옴으로써 membesSubmit의 함수는 불필요!
+  // const membersSubmit = function(form) {
+  //   const nameTextObject = form['name-text'];
+  //   try {
+  //     const evalReturn = eval(nameTextObject.value);
+  //     console.log(evalReturn);
+  //   } catch(error) {
+  //     console.error(error);
+  //     alert(error);
+  //     return false;
+  //   }
+  // }
 
-  const membersSubmit = function(form) {
+  // const membersCreate = function(member) {
+  //   members.push(member);
+  //   membersSet()
+  //   return members;
+  // };
+  const membersCreate = function(form) {
     const nameTextObject = form['name-text'];
-    try {
-      const evalReturn = eval(nameTextObject.value);
-      console.log(evalReturn);
-    } catch(error) {
-      console.error(error);
-      alert(error);
-      return false;
-    }
-  }
-
-  const membersCreate = function(member) {
-    members.push(member);
-    membersSet()
-    return members;
+    members.push(nameTextObject.value);
+    membersSet();
+    nameTextObject.value = '';
+    return membersRead();
   };
+
   const membersRead = function() {
     // for (let index in members) {
     //   document.writeln(members[index]);
