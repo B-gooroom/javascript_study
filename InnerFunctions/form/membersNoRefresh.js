@@ -69,8 +69,9 @@ nameTextObject.blur();
   //   membersSet()
   //   return members;
   // };
+
   const membersUpdate = function(index) {
-    const name = document.getElementsByName('members-name')[0].value
+    const name = document.getElementsByName('members-name')[index].value;
     members[index] = name;
     membersSet();
     return membersRead();
