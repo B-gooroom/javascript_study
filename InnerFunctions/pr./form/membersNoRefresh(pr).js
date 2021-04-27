@@ -1,12 +1,12 @@
-const url = new URL(window.location);
-const queryString = url.searchParams;
-const nameText = queryString.get('name-text');
-const nameHiddens = queryString.getAll('name-hidden');
-const nameHidden = nameHiddens[0];
+// const url = new URL(window.location);
+// const queryString = url.searchParams;
+// const nameText = queryString.get('name-text');
+// const nameHiddens = queryString.getAll('name-hidden');
+// const nameHidden = nameHiddens[0];
 
 // const nameTextObjects = document.getElementsByName('name-text');
 // const nameTextObject = nameTextObjects[0];
-nameTextObject = document.getElementsByName('name-text')[0];
+// nameTextObject = document.getElementsByName('name-text')[0];
 
   // const members = [];
   const membersGet = sessionStorage.getItem('members');
@@ -18,23 +18,31 @@ nameTextObject = document.getElementsByName('name-text')[0];
     sessionStorage.setItem('members', membersSet);
   }
   
-  const membersSubmit = function(form) {
-    const nameTextObject = form['name-text']; 
-    try {
-      const evalReturn = eval(nameTextObject.value);
-      console.log(evalReturn);
-    } catch(error) {
-      console.error(error);
-      alert(error);
-      return false;
-    }
-  }
-  const membersCreate = function(member) {
-    members.push(member);
-    membersSet()
-    window.location.reload();
-    return members;
+  // const membersSubmit = function(form) {
+  //   const nameTextObject = form['name-text']; 
+  //   try {
+  //     const evalReturn = eval(nameTextObject.value);
+  //     console.log(evalReturn);
+  //   } catch(error) {
+  //     console.error(error);
+  //     alert(error);
+  //     return false;
+  //   }
+  // }
+  // const membersCreate = function(member) {
+  //   members.push(member);
+  //   membersSet()
+  //   window.location.reload();
+  //   return members;
+  // };
+
+  const membersCreate = function(form) {
+    const nameTextObject = form['name-text'];
+    members.push(nameTextObject.value);
+    membersSet();
+    return membersRead();
   };
+
   const membersRead = function() {
     // for (let index in members) {
       // document.writeln(members[index]);
