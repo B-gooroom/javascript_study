@@ -39,6 +39,7 @@
   const membersCreate = function(form) {
     const nameTextObject = form['name-text'];
     members.push(nameTextObject.value);
+    nameTextObject.value = '';
     membersSet();
     return membersRead();
   };
