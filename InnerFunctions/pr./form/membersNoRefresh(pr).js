@@ -70,7 +70,7 @@ nameTextObject = document.getElementsByName('name-text')[0];
   //   return members;
   // };
   const membersUpdate = function(index) {
-    const name = document.getElementsByName('members-name')[0].value;
+    const name = document.getElementsByName('members-name')[index].value;
     members[index] = name;
     membersSet();
     return membersRead();
