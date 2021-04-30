@@ -2,9 +2,9 @@ const membersGet = sessionStorage.getItem('members');
 const membersLogical = membersGet || '[]';
 const members = JSON.parse(membersLogical);
 
-const ajax = function(method, url, data, callback) {
+const ajax = function (method, url, data, callback) {
   const xhrObject = new XMLHttpRequest();
-  xhrObject.onreadystatechange = function() {
+  xhrObject.onreadystatechange = function () {
     if (xhrObject.readyState !== 4) return;
     if (xhrObject.status === 200) {
       callback(xhrObject);
@@ -23,24 +23,24 @@ const ajax = function(method, url, data, callback) {
 };
 
 
-const membersCreate = function(form) {
+const membersCreate = function (form) {
   const memberNameObject = form['member-name'];
   const memberAgeObject = form['member-age'];
   const member = {
     name: memberNameObject.value,
     age: memberAgeObject.value
   };
-  const successFunction = function() {
+  const successFunction = function () {
     memberNameObject.value = '';
     memberAgeObject.value = '';
     membersRead();
   }
-  ajax ('POST', 'http://localhost:3100/api/v1/members', JSON.stringify(member), successFunction);
+  ajax('POST', 'http://localhost:3100/api/v1/members', JSON.stringify(member), successFunction);
   // successFunction = callback
 };
 
-const membersRead = function() {
-  const successFunction = function(xhrObject) {
+const membersRead = function () {
+  const successFunction = function (xhrObject) {
     const membersLogical = JSON.parse(xhrObject.responseText);
     const members = membersLogical.members;
     const tagDivParent = document.getElementById('tag-div-parent');
@@ -60,7 +60,7 @@ const membersRead = function() {
     }
     console.log('Readed', members);
   };
-  ajax ('GET', 'http://localhost:3100/api/v1/members', '', successFunction);
+  ajax('GET', 'http://localhost:3100/api/v1/members', '', successFunction);
   // const xhrObject = new XMLHttpRequest();
   // xhrObject.onreadystatechange = function () {
   //   if (xhrObject.readyState !== 4) return;
@@ -80,28 +80,30 @@ const membersRead = function() {
   // xhrObject.send();
 };
 
-const membersDelete = function(index) {
+const membersDelete = function (index) {
   const url = 'http://localhost:3100/api/v1/members/' + index;
   const xhrObject = new XMLHttpRequest();
-  xhrObject.onreadystatechange = function () {
-    if (xhrObject.readyState !== 4) return;
-    if (xhrObject.status === 200) {
-      membersRead();
-    } else {
-      const error = {
-        status: xhrObject.status,
-        statusText: xhrObject.statusText,
-        responseText: xhrObject.responseText
-      }
-      console.error(error);
-    }
-  };
-  xhrObject.open('DELETE', url);
-  xhrObject.setRequestHeader('Content-Type', 'application/json');
-  xhrObject.send();
+  // xhrObject.onreadystatechange = function () {
+  //   if (xhrObject.readyState !== 4) return;
+  //   if (xhrObject.status === 200) {
+  //     membersRead();
+  //   } else {
+  //     const error = {
+  //       status: xhrObject.status,
+  //       statusText: xhrObject.statusText,
+  //       responseText: xhrObject.responseText
+  //     }
+  //     console.error(error);
+  //   }
+  // };
+  // xhrObject.open('DELETE', url);
+  // xhrObject.setRequestHeader('Content-Type', 'application/json');
+  // xhrObject.send();
+
+  ajax('DELETE', url, '', membersRead);
 };
 
-const membersUpdate = function(index) {
+const membersUpdate = function (index) {
   const name = document.getElementsByName('members-name')[index].value;
   const age = document.getElementsByName('members-age')[index].value;
   const memberUpdate = {
@@ -130,7 +132,7 @@ const membersUpdate = function(index) {
   xhrObject.send(JSON.stringify(memberUpdate));
 };
 
-const membersSet = function() {
+const membersSet = function () {
   const membersSet = JSON.stringify(members);
   sessionStorage.setItem('members', membersSet);
 };
