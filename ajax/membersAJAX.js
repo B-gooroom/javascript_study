@@ -95,7 +95,12 @@ const membersDelete = function (index) {
   // xhrObject.setRequestHeader('Content-Type', 'application/json');
   // xhrObject.send();
 
-  ajax('DELETE', url, '', membersRead);
+  // ajax('DELETE', url, '', membersRead);
+  axios.delete(url)
+    .then(membersRead)
+    .catch(function (error) {
+      console.log(error);
+    });
 };
 
 const membersUpdate = function (index) {
