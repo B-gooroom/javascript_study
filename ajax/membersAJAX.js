@@ -46,8 +46,8 @@ const membersCreate = function (form) {
 };
 
 const membersRead = function () {
-  const successFunction = function (xhrObject) {
-    const membersLogical = JSON.parse(xhrObject.responseText);
+  const successFunction = function (response) {
+    const membersLogical = response.data;
     const members = membersLogical.members;
     const tagDivParent = document.getElementById('tag-div-parent');
     const tagDivChild = document.getElementById('tag-div-child');
@@ -66,24 +66,13 @@ const membersRead = function () {
     }
     console.log('Readed', members);
   };
-  ajax('GET', 'http://localhost:3100/api/v1/members', '', successFunction);
-  // const xhrObject = new XMLHttpRequest();
-  // xhrObject.onreadystatechange = function () {
-  //   if (xhrObject.readyState !== 4) return;
-  //   if (xhrObject.status === 200) {
-  //     successFunction(xhrObject);
-  //   } else {
-  //     const error = {
-  //       status: xhrObject.status,
-  //       statusText: xhrObject.statusText,
-  //       responseText: xhrObject.responseText
-  //     }
-  //     console.error(error);
-  //   }
-  // };
-  // xhrObject.open('GET', 'http://localhost:3100/api/v1/members');
-  // xhrObject.setRequestHeader('Content-Type', 'application/json');
-  // xhrObject.send();
+  // ajax('GET', 'http://localhost:3100/api/v1/members', '', successFunction);
+
+  axios.get('http://localhost:3100/api/v1/members')
+    .then(successFunction)
+    .catch(function (error) {
+      console.log(error);
+    });
 };
 
 const membersDelete = function (index) {
