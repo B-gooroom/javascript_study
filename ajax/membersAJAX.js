@@ -130,7 +130,12 @@ const membersUpdate = function (index) {
   // xhrObject.open('PATCH', 'http://localhost:3100/api/v1/members');
   // xhrObject.setRequestHeader('Content-Type', 'application/json');
   // xhrObject.send(JSON.stringify(memberUpdate));
-  ajax('PATCH', 'http://localhost:3100/api/v1/members', JSON.stringify(memberUpdate), membersRead);
+  // ajax('PATCH', 'http://localhost:3100/api/v1/members', JSON.stringify(memberUpdate), membersRead);
+  axios.patch('http://localhost:3100/api/v1/members', memberUpdate)
+    .then(membersRead)
+    .catch(function (error) {
+      console.log(error);
+    });
 };
 
 const membersSet = function () {
