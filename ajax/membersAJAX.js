@@ -35,8 +35,14 @@ const membersCreate = function (form) {
     memberAgeObject.value = '';
     membersRead();
   }
-  ajax('POST', 'http://localhost:3100/api/v1/members', JSON.stringify(member), successFunction);
   // successFunction = callback
+  // ajax('POST', 'http://localhost:3100/api/v1/members', JSON.stringify(member), successFunction);
+
+  axios.post('http://localhost:3100/api/v1/members', member)
+    .then(successFunction)
+    .catch(function (error) {
+      console.log(error);
+    });
 };
 
 const membersRead = function () {
