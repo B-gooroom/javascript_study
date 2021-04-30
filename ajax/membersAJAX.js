@@ -113,23 +113,24 @@ const membersUpdate = function (index) {
       age: age
     }
   };
-  const xhrObject = new XMLHttpRequest();
-  xhrObject.onreadystatechange = function () {
-    if (xhrObject.readyState !== 4) return;
-    if (xhrObject.status === 200) {
-      membersRead();
-    } else {
-      const error = {
-        status: xhrObject.status,
-        statusText: xhrObject.statusText,
-        responseText: xhrObject.responseText
-      }
-      console.error(error);
-    }
-  };
-  xhrObject.open('PATCH', 'http://localhost:3100/api/v1/members');
-  xhrObject.setRequestHeader('Content-Type', 'application/json');
-  xhrObject.send(JSON.stringify(memberUpdate));
+  // const xhrObject = new XMLHttpRequest();
+  // xhrObject.onreadystatechange = function () {
+  //   if (xhrObject.readyState !== 4) return;
+  //   if (xhrObject.status === 200) {
+  //     membersRead();
+  //   } else {
+  //     const error = {
+  //       status: xhrObject.status,
+  //       statusText: xhrObject.statusText,
+  //       responseText: xhrObject.responseText
+  //     }
+  //     console.error(error);
+  //   }
+  // };
+  // xhrObject.open('PATCH', 'http://localhost:3100/api/v1/members');
+  // xhrObject.setRequestHeader('Content-Type', 'application/json');
+  // xhrObject.send(JSON.stringify(memberUpdate));
+  ajax('PATCH', 'http://localhost:3100/api/v1/members', JSON.stringify(memberUpdate), membersRead);
 };
 
 const membersSet = function () {
