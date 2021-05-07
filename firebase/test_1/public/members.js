@@ -29,4 +29,13 @@ const membersRead = function () {
     }
   });
 };
+
+const membersDelete = function (index) {
+  const key = document.getElementsByName('members-key')[index].value;
+  axios.delete('https://be-gooroom-default-rtdb.firebaseio.com/members/' + key + '.json').then(function (response) {
+    console.log('Done membersDelete', response.data);
+    membersRead();
+  });
+};
+
 membersRead();
