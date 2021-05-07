@@ -38,4 +38,15 @@ const membersDelete = function (index) {
   });
 };
 
+const membersUpdate = function (index) {
+  const memberUpdate = {}
+  memberUpdate[document.getElementsByName('members-key')[index].value] = {
+    name: document.getElementsByName('members-name')[index].innerHTML,
+    age: document.getElementsByName('members-age')[index].value
+  };
+  axios.patch('https://be-gooroom-default-rtdb.firebaseio.com/members.json', memberUpdate).then(function (response) {
+    console.log('Done membersUpdate', response.data);
+    membersRead();
+  });
+};
 membersRead();
